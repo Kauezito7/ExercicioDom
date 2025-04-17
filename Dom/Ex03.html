@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+</head>
+<body>
+    <header>
+        <h1>Camisetas</h1>
+    </header>
+    <main>
+        <ul>
+            <ul>Camiseta Preta - R$50 <button onclick="adicionarAoCarrinho('Camiseta Preta', 50)">Adicionar</button></ul>
+            
+            <ul>Camiseta Branca - R$40 <button onclick="adicionarAoCarrinho('Camiseta Branca', 40)">Adicionar</button></ul>
+        </ul>
+
+        <h2>Carrinho:</h2>
+        <ul id="lista_carrinho">
+        </ul>
+        <div id="total_carrinho">Total: R$ 0.00</div>
+    </main>
+    <footer></footer>
+    <script>
+        
+        let carrinho = [];
+        let listaCarrinho = document.getElementById('lista_carrinho');
+        let totalCarrinho = document.getElementById('total_carrinho');
+
+        function adicionarAoCarrinho(nome, preco) {
+            carrinho.push({ nome: nome, preco: preco });
+            atualizarCarrinho();
+        }
+
+        function removerDoCarrinho(index) {
+            carrinho.splice(index, 1);
+            atualizarCarrinho();
+        }
+
+        function atualizarCarrinho() {
+            listaCarrinho.innerHTML = '';
+            let total = 0;
+
+            for (let i = 0; i < carrinho.length; i++) {
+                let item = carrinho[i];
+                let itemLista = document.createElement('li');
+                itemLista.textContent = `${item.nome} - R$${item.preco.toFixed(2)}`;
+
+                let botaoRemover = document.createElement('button');
+                botaoRemover.textContent = 'Remover';
+                botaoRemover.onclick = function() {
+                    removerDoCarrinho(i);
+                };
+
+                itemLista.appendChild(botaoRemover);
+                listaCarrinho.appendChild(itemLista);
+                total += item.preco;
+            }
+
+            totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
+        }
+
+        atualizarCarrinho();
+    </script>
+</body>
+</html>

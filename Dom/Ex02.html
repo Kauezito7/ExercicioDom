@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo Escuro/Claro</title>
+    <style>
+        body.claro {
+          background-color: white;
+          color: black;
+        }
+      
+        body.escuro {
+          background-color: #121212;
+          color: white;
+        }
+      
+        button {
+          border-radius: 20px;
+        }
+      </style>
+</head>
+<body>
+    <body class="claro"></body>
+    <header>
+        <h1>Modo Claro/Escuro</h1>
+
+    </header>
+    <main>
+        <button onclick="mudarTema()">trocar tema</button>
+        
+    </main>
+    <footer></footer>
+</body>
+<script>
+      function mudarTema() {
+        const corpo = document.body;
+        corpo.classList.toggle('escuro');
+        corpo.classList.toggle('claro');
+ } 
+    
+</script>
+</html>
